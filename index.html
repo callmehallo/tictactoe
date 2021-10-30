@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Lobster:regular"
+    rel="stylesheet" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Knewave&display=swap"
+  rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kristi&display=swap"
+    rel="stylesheet">
+
+
+  <link rel="stylesheet" href="styles.css">
+  <title>TicTacToe</title>
+</head>
+
+<body  > 
+  <div class="flex" id="container" >
+    <div class="flex" id="title">
+      <h1>Tic-Tac-Toe</h1>
+      <div class="flex" id="menu">
+        <button class="menuBtn hide  toggleJS" id="newGameBtn"> new game</button>
+        <button class="menuBtn hide  toggleJS" id="levelBtn">adjust level</button>
+        <button class="menuBtn hide toggleJS" id="resetBtn"> reset score</button>
+      </div>
+    </div>
+    <div class="flex" id="header"  >
+      <div class="flex "  id="startDiv">
+      <button class="flex " id="startBtn" type="button"><span>START </span></button>
+    </div>
+    <div class="flex hide toggleJS" id="formDiv">
+      <form onsubmit="return false">
+        <input type="text" placeholder="enter your name" name="name" id="nameForm" required minlength="2" maxlength="10">
+      </form>
+    </div>
+      <div class="flex hide toggleJS" id="inGameDiv">
+        
+        <div class="flex" id="names">
+          <div class="name flex" id="player">
+            <p>Andi</p>
+          </div>
+          <div class="name flex" id="score"> <p>0:0</p></div>
+          <div class="name  flex" id="com"> <p>Mr. Com</p></div>
+        </div>
+        
+        
+      </div>
+    </div>
+    <div class="flex" id="gameboard">
+      <div class="flex" id="board"></div>
+       <!-- #board is a grid, nvm the flex class -->
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
