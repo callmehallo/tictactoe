@@ -6,74 +6,46 @@
 button {
   cursor: pointer;
 }
-/* @media screen and (max-width: 320px) {
-  #container {
-    width: 100vh;
-    height: auto;
-  }
-  #title h1 {
-    font-size: 0.9em;
-  }
-  #player,
-  #score,
-  #com {
-    height: 30%;
-    font-size: 1em !important;
-  }
-
-  #header {
-    height: 20% !important;
-    border-radius: 10px !important;
-  }
-  #menu {
-    justify-content: center !important;
-  }
-  #resetBtn {
-    margin-right: 1em !important;
-  }
-  .menuBtn {
-    padding-bottom: 3%;
-    font-size: x-small;
-  }
-} */
-/* @media screen and (max-width: 576px) {
-  #container {
-    min-width: 100%;
-    height: auto;
-  }
-} */
-
-/* @media screen and (max-width: 768px) {
-  #container {
-    min-width: 100%;
-    height: auto;
-  }
-  #player,
-  #score,
-  #com {
-    height: 30%;
-    font-size: 2em;
-  }
-
-  #header {
-    height: 20% !important;
-  }
-  .menuBtn {
-    padding-bottom: 0 !important;
-    margin: 0;
-  }
-} */
-
-/* @media screen and (max-width: 992px) {
-  #container {
-    width: 100%;
-    height: auto;
-  }
-} */
 
 body {
   width: 100vw;
   height: 100vh;
+}
+
+@media screen and (max-width: 877px) {
+  body > #container {
+    width: 95%;
+    margin: auto;
+  }
+  #container > #title {
+    font-size: 2em;
+    margin: 0;
+    padding-left: 2%;
+  }
+  #container > #header {
+    width: 100%;
+    height: 15vh;
+  }
+  #container > #gameboard {
+    padding: 5% 2%;
+    max-width: 90%;
+  }
+  #container > .grid {
+    height: 90px;
+  }
+  #container > #menu {
+    margin-top: 2em;
+    place-content: center;
+  }
+  #menu > .menuBtn {
+    color: #373b30;
+  }
+  #menu > #resetBtn {
+    margin-right: 1em;
+  }
+  #names > div {
+    font-size: clamp(16px, 2.9em, 46px);
+  }
 }
 
 .flex {
@@ -261,8 +233,15 @@ input:focus::placeholder {
 
 /* HEADER END */
 
+#gameStatus {
+  width: 100%;
+  height: 1.6em;
+  font-family: "Knewave", cursive;
+  font-size: clamp(8px, 1em, 24px);
+}
+
 #gameboard {
-  padding: 10%;
+  padding: 5% 9%;
   width: 100%;
   height: auto;
   max-height: 100%;

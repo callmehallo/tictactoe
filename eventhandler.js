@@ -17,6 +17,8 @@ const Eventhandler = (function () {
   const score = getElement("score");
   const menu = getElement("menu");
   const mobileMenu = getElement("mobileMenu");
+  const gameStatus = getElement("gameStatus");
+  const title = getElement("title");
 
   //buttons
   const startBtn = getElement("startBtn");
@@ -31,11 +33,12 @@ const Eventhandler = (function () {
     /* ElementsToToggleDisplay.forEach((el) => el.classList.toggle("hide")); */
   });
   input.addEventListener("change", () => {
-    Gameboard.getPlayer(input.value);
     playerName.textContent = `${
       input.value.charAt(0).toUpperCase() + input.value.slice(1) //capitalize first letter
     }`;
     ElementsToToggleDisplay.forEach((el) => el.classList.toggle("hide"));
+    GameMechanics.render();
+    GameMechanics.announceTurn();
   });
   const setMobileMenuView = () => {
     container.appendChild(menu);
@@ -61,12 +64,24 @@ const Eventhandler = (function () {
   };
 
   const addListenerForMarks = (field) => {
-    field.addEventListener("click", Gameboard.setSign);
+    field.addEventListener("click", GameMechanics.setSign);
   };
+
+  const mql = window.matchMedia("(max-width: 977px)");
+  mql.onchange = (e) => {
+    if (e.matches) {
+      setMobileMenuView();
+    } else {
+      title.append(menu);
+    }
+  };
+  mql.onchange(mql);
+
   return {
     setMobileMenuView,
     addListenerForMarks,
     incrScore,
     addListenerNewGame,
+    gameStatus,
   };
 })();
