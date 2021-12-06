@@ -70,9 +70,9 @@ const AI = (function () {
   const minimax = (board, depth, isMax) => {
     let score = evaluate(board);
 
-    if (score == 10) return score;
+    if (score == 10) return score - depth;
 
-    if (score == -10) return score;
+    if (score == -10) return score + depth;
 
     if (isMovesLeft(board) == false) return 0;
 
