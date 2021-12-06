@@ -30,12 +30,11 @@ const GameMechanics = (function () {
   };
 
   const setTurn = () => {
-    //computerbeginns funtkion hinzufuegen {comTurn = !comTurn; setTurn();}
     comTurn = !comTurn;
     announceTurn();
     if (comTurn) {
       setTimeout(() => {
-        computer.randomPlay(gameboard);
+        computer.play(gameboard);
       }, 1000);
     }
   };
@@ -48,15 +47,15 @@ const GameMechanics = (function () {
     } else {
       tempMark = "X";
     }
-    const index = e.target.getAttribute("id");
-    gameboard[index].occupied = true;
+    const i = e.target.getAttribute("id");
+    gameboard[i].occupied = true;
     e.target.textContent = `${tempMark}`;
-    gameboard[index].mark = `${tempMark}`;
+    gameboard[i].mark = `${tempMark}`;
     e.target.classList.toggle("clicked");
     e.target.removeEventListener("click", setSign);
+    AI.copyMove(i, comTurn);
     roundCount++;
     if (roundCount > 4) {
-      //ab hier in eine eigene funktion exportiern
       checkWin();
     }
     if (roundCount > 8) {
@@ -95,6 +94,7 @@ const GameMechanics = (function () {
 
     const magicNums = xoArray.map((el) => el.magicNum);
     const winningNums = helper.getWinningNums(magicNums);
+
     if (winningNums != "") {
       endGame(winningNums);
     }
@@ -129,6 +129,7 @@ const GameMechanics = (function () {
       board.removeChild(board.lastChild);
     }
     render();
+    AI.newGame();
     announceTurn();
   };
 
@@ -156,15 +157,43 @@ const helper = (function () {
 
 const computer = (function () {
   let name = "com";
+  let level = "easy";
+  let wasMoveRandom = true;
+  const play = (gameboard) => {
+    if (level === "easy") {
+      randomPlay(gameboard);
+    } else if (level === "medium") {
+      if (wasMoveRandom) {
+        smartPlay(gameboard);
+      } else {
+        randomPlay(gameboard);
+      }
+      wasMoveRandom = !wasMoveRandom;
+    } else smartPlay(gameboard);
+  };
   const randomNumber = (max) => {
     max = Math.floor(max);
     return Math.floor(Math.random() * max);
   };
   const randomPlay = (gameboard) => {
     const availableFields = gameboard.filter((el) => el.occupied == false);
-    const index = randomNumber(availableFields.length);
+    const i = randomNumber(availableFields.length);
 
-    GameMechanics.setSign(availableFields[index].div);
+    GameMechanics.setSign(availableFields[i].div);
   };
-  return { name, randomPlay };
+  const smartPlay = (gameboard) => {
+    const i = AI.findBestMove(AI.board);
+    GameMechanics.setSign(gameboard[i].div);
+  };
+  const adjustLevel = (levelBtn) => {
+    if (level === "easy") {
+      level = "medium";
+    } else if (level === "medium") {
+      level = "hard";
+    } else {
+      level = "easy";
+    }
+    levelBtn.textContent = `${level}`;
+  };
+  return { name, play, adjustLevel };
 })();

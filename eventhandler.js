@@ -40,6 +40,7 @@ const Eventhandler = (function () {
     GameMechanics.render();
     GameMechanics.announceTurn();
   });
+
   const setMobileMenuView = () => {
     container.appendChild(menu);
     //mediaquery macht den rest
@@ -53,15 +54,15 @@ const Eventhandler = (function () {
     score.innerText = `${playerScore}:${computerScore}`;
   };
 
+  const addListenerNewGame = (func) => {
+    newGameBtn.addEventListener("click", func);
+  };
+  levelBtn.addEventListener("click", () => computer.adjustLevel(levelBtn));
   resestBtn.addEventListener("click", function () {
     computerScore = 0;
     playerScore = 0;
     score.innerText = `${playerScore}:${computerScore}`;
   });
-
-  const addListenerNewGame = (func) => {
-    newGameBtn.addEventListener("click", func);
-  };
 
   const addListenerForMarks = (field) => {
     field.addEventListener("click", GameMechanics.setSign);
