@@ -1,3 +1,8 @@
+//The main part of the  following minimax algorithm code originates from
+//https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-3-tic-tac-toe-ai-finding-optimal-move/
+//contributed by Akshay L Aradhya
+//I just modified it a little bit to be able to implement it.
+
 const AI = (function () {
   class Move {
     constructor() {
