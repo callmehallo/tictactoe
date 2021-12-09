@@ -113,7 +113,7 @@ const AI = (function () {
       return best;
     }
   };
-  function findBestMove(board) {
+  const findBestMove = (board) => {
     let bestVal = -1000;
     let bestMove = new Move();
     bestMove.row = -1;
@@ -141,7 +141,7 @@ const AI = (function () {
     return compArr.findIndex(
       (el) => bestMove.row === el.i && bestMove.col === el.j
     );
-  }
+  };
   const newGame = () => {
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
